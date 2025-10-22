@@ -1,6 +1,6 @@
 # 🤖 LLM Directory
 
-A comprehensive, real-time directory of top Large Language Models (LLMs) with detailed information, use cases, and examples. Features automatic daily data refresh and web search functionality for AI/GenAI/LLM topics.
+A comprehensive, real-time directory of top Large Language Models (LLMs) with detailed information, use cases, and examples. Features automatic daily data refresh at 9 AM EST.
 
 ## ✨ Features
 
@@ -21,11 +21,6 @@ A comprehensive, real-time directory of top Large Language Models (LLMs) with de
 - **Smart Refresh Logic** - Only refreshes once per day after 9 AM EST
 - **Last Update Tracker** - Shows when data was last refreshed
 - **Next Refresh Timer** - Displays when the next auto-refresh will occur
-
-### 🔍 Web Search Integration
-- **Search Box** for AI, GenAI, and LLM topics
-- **Direct Web Search** - Opens Google search in a new tab with AI-focused queries
-- **Expandable Architecture** - Ready to integrate with custom search APIs (Google Custom Search, Bing API, etc.)
 
 ### 🎨 Modern UI/UX
 - **Responsive Design** - Works perfectly on desktop, tablet, and mobile
@@ -87,8 +82,7 @@ npm run preview
 LLM-Directory/
 ├── src/
 │   ├── components/
-│   │   ├── LLMTable.jsx          # Table component for displaying LLM models
-│   │   └── SearchBox.jsx         # Web search component
+│   │   └── LLMTable.jsx          # Table component for displaying LLM models
 │   ├── services/
 │   │   └── llmService.js         # LLM data service with auto-refresh logic
 │   ├── App.jsx                   # Main application component
@@ -169,30 +163,6 @@ To add new models, edit `src/services/llmService.js` and add to the `llmModels` 
 }
 ```
 
-### Integrating Real Search API
-
-The current search functionality opens Google search. To integrate a real search API:
-
-1. Get API keys for your preferred search service:
-   - [Google Custom Search API](https://developers.google.com/custom-search/v1/overview)
-   - [Bing Web Search API](https://www.microsoft.com/en-us/bing/apis/bing-web-search-api)
-   - [SerpAPI](https://serpapi.com/)
-
-2. Update `src/services/llmService.js`:
-
-```javascript
-async searchWeb(query) {
-  const response = await axios.get('YOUR_SEARCH_API_ENDPOINT', {
-    params: {
-      q: query,
-      key: 'YOUR_API_KEY'
-    }
-  });
-  return response.data;
-}
-```
-
-3. Update `src/components/SearchBox.jsx` to display results inline
 
 ## 🎯 Use Cases
 

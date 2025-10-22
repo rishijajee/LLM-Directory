@@ -1,7 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { format } from 'date-fns';
 import LLMTable from './components/LLMTable';
-import SearchBox from './components/SearchBox';
 import llmService from './services/llmService';
 import './App.css';
 
@@ -9,7 +8,6 @@ function App() {
   const [models, setModels] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [lastRefresh, setLastRefresh] = useState(null);
-  const [searchResult, setSearchResult] = useState(null);
   const [nextRefreshTime, setNextRefreshTime] = useState('');
 
   // Fetch LLM models
@@ -39,24 +37,6 @@ function App() {
   // Handle manual refresh
   const handleRefresh = () => {
     fetchModels();
-  };
-
-  // Handle web search
-  const handleSearch = async (query) => {
-    try {
-      const result = await llmService.searchWeb(query);
-      setSearchResult(result);
-
-      // For demonstration, open a Google search in a new tab
-      const searchUrl = `https://www.google.com/search?q=${encodeURIComponent(query + ' AI GenAI LLM')}`;
-      window.open(searchUrl, '_blank');
-    } catch (error) {
-      console.error('Search error:', error);
-      setSearchResult({
-        error: error.message,
-        timestamp: new Date().toISOString()
-      });
-    }
   };
 
   // Initial load and auto-refresh setup
@@ -120,22 +100,6 @@ function App() {
       </header>
 
       <main className="app-main">
-        <section className="search-section">
-          <h2>Search AI Topics</h2>
-          <SearchBox onSearch={handleSearch} />
-          {searchResult && (
-            <div className="search-result-info">
-              {searchResult.error ? (
-                <p className="error-message">{searchResult.error}</p>
-              ) : (
-                <p className="success-message">
-                  Search opened in new tab. {searchResult.message}
-                </p>
-              )}
-            </div>
-          )}
-        </section>
-
         <section className="models-section">
           <div className="section-header">
             <h2>Top LLM Models</h2>

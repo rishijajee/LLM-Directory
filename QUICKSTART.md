@@ -26,10 +26,6 @@ That's it! 🎉
 - **Last updated** timestamp
 - **Next auto-refresh** timer (refreshes at 9 AM EST daily)
 
-### Search Section
-- Search box to find AI/GenAI/LLM topics on the web
-- Opens Google search in new tab with your query
-
 ### LLM Models Table
 Comprehensive table with 16 LLM models including:
 
@@ -55,13 +51,10 @@ Comprehensive table with 16 LLM models including:
 ### 1. Manual Refresh
 Click the **Refresh** button in the top-right to update all data immediately.
 
-### 2. Web Search
-Type any AI topic (e.g., "GPT-4 vs Claude", "Llama fine-tuning") and click **Search Web** to open Google search.
-
-### 3. Table Scrolling
+### 2. Table Scrolling
 The table is horizontally scrollable with a sticky header for easy navigation.
 
-### 4. Responsive Design
+### 3. Responsive Design
 Try resizing your browser - the layout adapts to all screen sizes!
 
 ---
@@ -149,10 +142,9 @@ Hard refresh the browser:
 ## 📚 Next Steps
 
 1. **Explore the table** - Scroll horizontally to see all columns
-2. **Try the search** - Search for AI topics you're interested in
-3. **Click refresh** - See the timestamp update in real-time
-4. **Add your favorite models** - Customize the data
-5. **Read the full README.md** - Learn about advanced features
+2. **Click refresh** - See the timestamp update in real-time
+3. **Add your favorite models** - Customize the data
+4. **Read the full README.md** - Learn about advanced features
 
 ---
 
