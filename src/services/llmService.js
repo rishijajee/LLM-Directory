@@ -8,6 +8,7 @@ class LLMService {
         id: 1,
         name: 'GPT-4',
         provider: 'OpenAI',
+        website: 'https://openai.com/gpt-4',
         releaseDate: '2023-03',
         parameters: '1.76T (estimated)',
         contextWindow: '8K-32K tokens',
@@ -36,6 +37,7 @@ class LLMService {
       {
         id: 2,
         name: 'GPT-4 Turbo',
+        website: 'https://openai.com/index/gpt-4-turbo-and-gpt-4/',
         provider: 'OpenAI',
         releaseDate: '2023-11',
         parameters: '1.76T (estimated)',
@@ -65,6 +67,7 @@ class LLMService {
       {
         id: 3,
         name: 'GPT-3.5 Turbo',
+        website: 'https://platform.openai.com/docs/models/gpt-3-5-turbo',
         provider: 'OpenAI',
         releaseDate: '2022-11',
         parameters: '175B',
@@ -94,6 +97,7 @@ class LLMService {
       {
         id: 4,
         name: 'Claude 3.5 Sonnet',
+        website: 'https://www.anthropic.com/claude/sonnet',
         provider: 'Anthropic',
         releaseDate: '2024-06',
         parameters: 'Undisclosed',
@@ -123,6 +127,7 @@ class LLMService {
       {
         id: 5,
         name: 'Claude 3 Opus',
+        website: 'https://www.anthropic.com/claude/opus',
         provider: 'Anthropic',
         releaseDate: '2024-03',
         parameters: 'Undisclosed',
@@ -152,6 +157,7 @@ class LLMService {
       {
         id: 6,
         name: 'Claude 3 Haiku',
+        website: 'https://www.anthropic.com/claude/haiku',
         provider: 'Anthropic',
         releaseDate: '2024-03',
         parameters: 'Undisclosed',
@@ -181,6 +187,7 @@ class LLMService {
       {
         id: 7,
         name: 'Gemini 1.5 Pro',
+        website: 'https://deepmind.google/technologies/gemini/pro/',
         provider: 'Google',
         releaseDate: '2024-02',
         parameters: 'Undisclosed',
@@ -211,6 +218,7 @@ class LLMService {
       {
         id: 8,
         name: 'Gemini 1.5 Flash',
+        website: 'https://deepmind.google/technologies/gemini/flash/',
         provider: 'Google',
         releaseDate: '2024-05',
         parameters: 'Undisclosed',
@@ -241,6 +249,7 @@ class LLMService {
       {
         id: 9,
         name: 'Llama 3.1 405B',
+        website: 'https://ai.meta.com/blog/meta-llama-3-1/',
         provider: 'Meta',
         releaseDate: '2024-07',
         parameters: '405B',
@@ -270,6 +279,7 @@ class LLMService {
       {
         id: 10,
         name: 'Llama 3.1 70B',
+        website: 'https://ai.meta.com/blog/meta-llama-3-1/',
         provider: 'Meta',
         releaseDate: '2024-07',
         parameters: '70B',
@@ -299,6 +309,7 @@ class LLMService {
       {
         id: 11,
         name: 'Mistral Large 2',
+        website: 'https://mistral.ai/news/mistral-large-2407/',
         provider: 'Mistral AI',
         releaseDate: '2024-07',
         parameters: '123B',
@@ -328,6 +339,7 @@ class LLMService {
       {
         id: 12,
         name: 'Mistral Small',
+        website: 'https://mistral.ai/news/mistral-small/',
         provider: 'Mistral AI',
         releaseDate: '2024-02',
         parameters: '22B',
@@ -357,6 +369,7 @@ class LLMService {
       {
         id: 13,
         name: 'PaLM 2',
+        website: 'https://ai.google/discover/palm2/',
         provider: 'Google',
         releaseDate: '2023-05',
         parameters: '340B (estimated)',
@@ -386,6 +399,7 @@ class LLMService {
       {
         id: 14,
         name: 'Command R+',
+        website: 'https://cohere.com/command',
         provider: 'Cohere',
         releaseDate: '2024-04',
         parameters: '104B',
@@ -416,6 +430,7 @@ class LLMService {
       {
         id: 15,
         name: 'DALL-E 3',
+        website: 'https://openai.com/dall-e-3',
         provider: 'OpenAI',
         releaseDate: '2023-10',
         parameters: 'Undisclosed',
@@ -446,6 +461,7 @@ class LLMService {
       {
         id: 16,
         name: 'Stable Diffusion XL',
+        website: 'https://stability.ai/stable-diffusion',
         provider: 'Stability AI',
         releaseDate: '2023-07',
         parameters: '3.5B',

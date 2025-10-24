@@ -370,7 +370,18 @@ const EnhancedLLMTable = ({ models, isLoading }) => {
                     </td>
                     {visibleColumns.modelName && (
                       <td className="model-name">
-                        {model.name}
+                        {model.website || model.link ? (
+                          <a
+                            href={model.website || model.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="model-name-link"
+                          >
+                            {model.name}
+                          </a>
+                        ) : (
+                          model.name
+                        )}
                         {model.isWebResult && (
                           <>
                             <span className="web-result-indicator">🌐 Web</span>
