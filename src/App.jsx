@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { format } from 'date-fns';
-import LLMTable from './components/LLMTable';
+import EnhancedLLMTable from './components/EnhancedLLMTable';
 import llmService from './services/llmService';
 import './App.css';
 
@@ -105,7 +105,7 @@ function App() {
             <h2>Top LLM Models</h2>
             <p className="model-count">{models.length} models listed</p>
           </div>
-          <LLMTable models={models} isLoading={isLoading} />
+          <EnhancedLLMTable models={models} isLoading={isLoading} />
         </section>
       </main>
 
