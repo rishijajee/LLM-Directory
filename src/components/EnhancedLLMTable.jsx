@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect, useMemo } from 'react';
 import { format } from 'date-fns';
 import ArchitectureModal from './ArchitectureModal';
-import WebSearchResults from './WebSearchResults';
 import webSearchService from '../services/webSearchService';
 import './EnhancedLLMTable.css';
 
@@ -32,8 +31,6 @@ const EnhancedLLMTable = ({ models, isLoading }) => {
 
   // Web search state
   const [webResults, setWebResults] = useState([]);
-  const [isWebSearching, setIsWebSearching] = useState(false);
-  const [activeTab, setActiveTab] = useState('local'); // 'local' or 'web'
 
   const topScrollRef = useRef(null);
   const bottomScrollRef = useRef(null);
@@ -91,15 +88,12 @@ const EnhancedLLMTable = ({ models, isLoading }) => {
         return;
       }
 
-      setIsWebSearching(true);
       try {
         const results = await webSearchService.searchWeb(searchTerm);
         setWebResults(results);
       } catch (error) {
         console.error('Web search failed:', error);
         setWebResults([]);
-      } finally {
-        setIsWebSearching(false);
       }
     };
 
@@ -107,6 +101,34 @@ const EnhancedLLMTable = ({ models, isLoading }) => {
     const timeoutId = setTimeout(performWebSearch, 500);
     return () => clearTimeout(timeoutId);
   }, [searchTerm]);
+
+  // Convert web results to model format
+  const webResultsAsModels = useMemo(() => {
+    return webResults.map((result, index) => ({
+      id: `web-${index}`,
+      name: result.title,
+      provider: result.source,
+      releaseDate: 'N/A',
+      parameters: 'See website',
+      contextWindow: 'See website',
+      description: result.snippet,
+      useCases: 'Visit website for details',
+      examples: 'Visit website for examples',
+      pricing: 'Check official site',
+      strengths: result.snippet,
+      limitations: 'N/A',
+      architecture: {
+        type: 'Visit website for architecture details',
+        components: {},
+        layers: 'N/A',
+        trainingMethod: 'N/A'
+      },
+      lastUpdated: new Date().toISOString(),
+      link: result.link,
+      isWebResult: true,
+      curatedBadge: result.type === 'curated'
+    }));
+  }, [webResults]);
 
   // Sorting logic
   const sortedModels = useMemo(() => {
@@ -134,9 +156,10 @@ const EnhancedLLMTable = ({ models, isLoading }) => {
     return sorted;
   }, [models, sortConfig]);
 
-  // Filtering logic
+  // Filtering logic - merge local filtered results with web results
   const filteredModels = useMemo(() => {
-    return sortedModels.filter(model => {
+    // Filter local models
+    const localFiltered = sortedModels.filter(model => {
       const matchesSearch = searchTerm === '' ||
         model.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
         model.provider.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -146,7 +169,14 @@ const EnhancedLLMTable = ({ models, isLoading }) => {
 
       return matchesSearch && matchesProvider;
     });
-  }, [sortedModels, searchTerm, filterProvider]);
+
+    // If there's a search term, merge with web results
+    if (searchTerm && searchTerm.length >= 2) {
+      return [...localFiltered, ...webResultsAsModels];
+    }
+
+    return localFiltered;
+  }, [sortedModels, searchTerm, filterProvider, webResultsAsModels]);
 
   // Get unique providers
   const providers = useMemo(() => {
@@ -262,30 +292,14 @@ const EnhancedLLMTable = ({ models, isLoading }) => {
         </div>
 
         <div className="results-info">
-          Showing {filteredModels.length} of {models.length} models
+          Showing {filteredModels.length} models
+          {searchTerm && webResults.length > 0 && (
+            <span className="web-results-badge"> (including {webResults.length} from web)</span>
+          )}
         </div>
       </div>
 
-      {/* Search Result Tabs */}
-      {searchTerm && (
-        <div className="search-tabs">
-          <button
-            className={`search-tab ${activeTab === 'local' ? 'active' : ''}`}
-            onClick={() => setActiveTab('local')}
-          >
-            📋 Local Results ({filteredModels.length})
-          </button>
-          <button
-            className={`search-tab ${activeTab === 'web' ? 'active' : ''}`}
-            onClick={() => setActiveTab('web')}
-          >
-            🌐 Web Results {isWebSearching ? '(Searching...)' : `(${webResults.length})`}
-          </button>
-        </div>
-      )}
-
-      {/* Local Table Results */}
-      {(!searchTerm || activeTab === 'local') && (
+      {/* Table */}
       <div className="table-container">
         {/* Top Scrollbar */}
         <div className="scroll-wrapper-top" ref={topScrollRef}>
@@ -354,7 +368,17 @@ const EnhancedLLMTable = ({ models, isLoading }) => {
                         {expandedRows.has(model.id) ? '▼' : '▶'}
                       </button>
                     </td>
-                    {visibleColumns.modelName && <td className="model-name">{model.name}</td>}
+                    {visibleColumns.modelName && (
+                      <td className="model-name">
+                        {model.name}
+                        {model.isWebResult && (
+                          <>
+                            <span className="web-result-indicator">🌐 Web</span>
+                            {model.curatedBadge && <span className="curated-indicator">⭐</span>}
+                          </>
+                        )}
+                      </td>
+                    )}
                     {visibleColumns.provider && <td className="provider">{model.provider}</td>}
                     {visibleColumns.releaseDate && <td className="release-date">{model.releaseDate}</td>}
                     {visibleColumns.parameters && <td className="parameters">{model.parameters}</td>}
@@ -367,12 +391,23 @@ const EnhancedLLMTable = ({ models, isLoading }) => {
                     {visibleColumns.limitations && <td className="limitations">{model.limitations}</td>}
                     {visibleColumns.architecture && (
                       <td className="architecture-link">
-                        <button
-                          className="architecture-btn"
-                          onClick={() => handleArchitectureClick(model)}
-                        >
-                          View Details
-                        </button>
+                        {model.isWebResult ? (
+                          <a
+                            href={model.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="architecture-btn web-link"
+                          >
+                            Visit Site →
+                          </a>
+                        ) : (
+                          <button
+                            className="architecture-btn"
+                            onClick={() => handleArchitectureClick(model)}
+                          >
+                            View Details
+                          </button>
+                        )}
                       </td>
                     )}
                     {visibleColumns.lastUpdated && (
@@ -387,26 +422,47 @@ const EnhancedLLMTable = ({ models, isLoading }) => {
                     <tr className="expanded-details">
                       <td colSpan={Object.values(visibleColumns).filter(Boolean).length + 1}>
                         <div className="details-content">
-                          <div className="detail-section">
-                            <h4>Architecture Type</h4>
-                            <p>{model.architecture?.type || 'N/A'}</p>
-                          </div>
-                          <div className="detail-section">
-                            <h4>Training Method</h4>
-                            <p>{model.architecture?.trainingMethod || 'N/A'}</p>
-                          </div>
-                          <div className="detail-section">
-                            <h4>Layers</h4>
-                            <p>{model.architecture?.layers || 'N/A'}</p>
-                          </div>
-                          <div className="detail-section full-width">
-                            <button
-                              className="view-full-arch-btn"
-                              onClick={() => handleArchitectureClick(model)}
-                            >
-                              View Full Architecture Diagram →
-                            </button>
-                          </div>
+                          {model.isWebResult ? (
+                            <>
+                              <div className="detail-section full-width">
+                                <h4>🌐 Web Result</h4>
+                                <p>{model.description}</p>
+                              </div>
+                              <div className="detail-section full-width">
+                                <a
+                                  href={model.link}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="view-full-arch-btn web-link"
+                                >
+                                  Visit Official Website →
+                                </a>
+                              </div>
+                            </>
+                          ) : (
+                            <>
+                              <div className="detail-section">
+                                <h4>Architecture Type</h4>
+                                <p>{model.architecture?.type || 'N/A'}</p>
+                              </div>
+                              <div className="detail-section">
+                                <h4>Training Method</h4>
+                                <p>{model.architecture?.trainingMethod || 'N/A'}</p>
+                              </div>
+                              <div className="detail-section">
+                                <h4>Layers</h4>
+                                <p>{model.architecture?.layers || 'N/A'}</p>
+                              </div>
+                              <div className="detail-section full-width">
+                                <button
+                                  className="view-full-arch-btn"
+                                  onClick={() => handleArchitectureClick(model)}
+                                >
+                                  View Full Architecture Diagram →
+                                </button>
+                              </div>
+                            </>
+                          )}
                         </div>
                       </td>
                     </tr>
@@ -417,16 +473,6 @@ const EnhancedLLMTable = ({ models, isLoading }) => {
           </table>
         </div>
       </div>
-      )}
-
-      {/* Web Search Results */}
-      {searchTerm && activeTab === 'web' && (
-        <WebSearchResults
-          results={webResults}
-          isLoading={isWebSearching}
-          query={searchTerm}
-        />
-      )}
 
       {/* Hover Preview */}
       {hoveredRow && (
