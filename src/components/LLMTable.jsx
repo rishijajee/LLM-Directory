@@ -1,7 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { format } from 'date-fns';
+import ArchitectureModal from './ArchitectureModal';
 
 const LLMTable = ({ models, isLoading }) => {
+  const [selectedArchitecture, setSelectedArchitecture] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleArchitectureClick = (model) => {
+    setSelectedArchitecture(model);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedArchitecture(null);
+  };
+
   if (isLoading) {
     return (
       <div className="loading-container">
@@ -36,6 +50,7 @@ const LLMTable = ({ models, isLoading }) => {
               <th>Pricing</th>
               <th>Strengths</th>
               <th>Limitations</th>
+              <th>Architecture</th>
               <th>Last Updated</th>
             </tr>
           </thead>
@@ -53,6 +68,15 @@ const LLMTable = ({ models, isLoading }) => {
                 <td className="pricing">{model.pricing}</td>
                 <td className="strengths">{model.strengths}</td>
                 <td className="limitations">{model.limitations}</td>
+                <td className="architecture-link">
+                  <button
+                    className="architecture-btn"
+                    onClick={() => handleArchitectureClick(model)}
+                    aria-label={`View architecture details for ${model.name}`}
+                  >
+                    View Details
+                  </button>
+                </td>
                 <td className="last-updated">
                   {format(new Date(model.lastUpdated), 'MMM dd, yyyy HH:mm:ss')}
                 </td>
@@ -61,6 +85,13 @@ const LLMTable = ({ models, isLoading }) => {
           </tbody>
         </table>
       </div>
+
+      {isModalOpen && selectedArchitecture && (
+        <ArchitectureModal
+          model={selectedArchitecture}
+          onClose={closeModal}
+        />
+      )}
     </div>
   );
 };

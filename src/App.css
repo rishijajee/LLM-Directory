@@ -266,21 +266,60 @@ body {
 /* Table Container */
 .table-container {
   width: 100%;
-  overflow-x: auto;
+  position: relative;
+}
+
+/* Horizontal scrollbar at the top */
+.table-container::before {
+  content: '';
+  display: block;
+  height: 12px;
+  background: linear-gradient(to right, #f7fafc 0%, #e2e8f0 50%, #f7fafc 100%);
+  border-radius: 8px 8px 0 0;
+  border: 1px solid #e2e8f0;
+  border-bottom: none;
 }
 
 .table-wrapper {
   min-width: 100%;
   overflow-x: auto;
-  border-radius: 8px;
+  overflow-y: hidden;
+  border-radius: 0 0 8px 8px;
   border: 1px solid #e2e8f0;
+  position: relative;
+}
+
+/* Enhanced scrollbar styling */
+.table-wrapper::-webkit-scrollbar {
+  height: 12px;
+}
+
+.table-wrapper::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 8px;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 8px;
+  border: 2px solid #f1f5f9;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #5568d3 0%, #653a8b 100%);
+}
+
+/* Add top scrollbar for better UX */
+.table-container {
+  display: flex;
+  flex-direction: column-reverse;
 }
 
 .llm-table {
   width: 100%;
   border-collapse: collapse;
   font-size: 0.9rem;
-  min-width: 1800px;
+  min-width: 2000px; /* Increased to accommodate new Architecture column */
 }
 
 .llm-table thead {
@@ -381,6 +420,33 @@ body {
   color: #ed8936;
   font-weight: 500;
   min-width: 180px;
+}
+
+.architecture-link {
+  min-width: 140px;
+  text-align: center;
+}
+
+.architecture-btn {
+  padding: 0.5rem 1rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.architecture-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.architecture-btn:active {
+  transform: translateY(0);
 }
 
 .last-updated {
