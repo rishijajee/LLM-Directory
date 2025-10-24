@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import './ArchitectureModal.css';
-import ArchitectureDiagram from './ArchitectureDiagram';
+import DetailedArchitectureDiagram from './DetailedArchitectureDiagram';
 
 const ArchitectureModal = ({ model, onClose }) => {
   // Close modal on ESC key press
@@ -43,8 +43,8 @@ const ArchitectureModal = ({ model, onClose }) => {
         <div className="modal-body">
           {/* Architecture Diagram */}
           <div className="architecture-section">
-            <h3>Visual Architecture</h3>
-            <ArchitectureDiagram architecture={architecture} modelName={name} />
+            <h3>Detailed Visual Architecture</h3>
+            <DetailedArchitectureDiagram architecture={architecture} modelName={name} />
           </div>
 
           {/* Architecture Overview */}

@@ -2,9 +2,13 @@ import { useState, useEffect, useCallback } from 'react';
 import { format } from 'date-fns';
 import EnhancedLLMTable from './components/EnhancedLLMTable';
 import llmService from './services/llmService';
+import useVisitTracker from './hooks/useVisitTracker';
 import './App.css';
 
 function App() {
+  // Track visits and send email notifications
+  // ⚠️ Set to false to disable email notifications
+  useVisitTracker(true);
   const [models, setModels] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [lastRefresh, setLastRefresh] = useState(null);
