@@ -138,7 +138,7 @@ const DetailedArchitectureDiagram = ({ architecture, modelName }) => {
         {/* Arrow definitions */}
         <defs>
           <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
-            <polygon points="0 0, 10 3, 0 6" fill="#10b981" />
+            <polygon points="0 0, 10 3, 0 6" fill="#3b82f6" />
           </marker>
           <marker id="arrowhead-small" markerWidth="8" markerHeight="8" refX="7" refY="2.5" orient="auto">
             <polygon points="0 0, 8 2.5, 0 5" fill="#718096" />
@@ -257,7 +257,7 @@ const DetailedArchitectureDiagram = ({ architecture, modelName }) => {
         {/* Arrow definitions */}
         <defs>
           <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
-            <polygon points="0 0, 10 3, 0 6" fill="#10b981" />
+            <polygon points="0 0, 10 3, 0 6" fill="#3b82f6" />
           </marker>
           <marker id="arrowhead-small" markerWidth="8" markerHeight="8" refX="7" refY="2.5" orient="auto">
             <polygon points="0 0, 8 2.5, 0 5" fill="#718096" />
