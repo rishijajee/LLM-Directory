@@ -65,7 +65,7 @@ const EnhancedLLMTable = ({ models, isLoading }) => {
       topScroll.removeEventListener('scroll', handleTopScroll);
       bottomScroll.removeEventListener('scroll', handleBottomScroll);
     };
-  }, [filteredModels]);
+  }, []);
 
   // Keyboard shortcuts
   useEffect(() => {
