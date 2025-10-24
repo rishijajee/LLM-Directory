@@ -34,9 +34,9 @@ export default async function handler(req, res) {
     const clientUA = req.headers['user-agent'] || userAgent;
 
     // Format email content
-    const emailSubject = `🚀 New Visit to LLM Directory`;
+    const emailSubject = `LLM-Directory Refreshed`;
     const emailBody = `
-      <h2>New Visit Detected!</h2>
+      <h2>🔄 LLM Directory Refreshed</h2>
       <p><strong>Time:</strong> ${timestamp}</p>
       <p><strong>IP Address:</strong> ${clientIp}</p>
       <p><strong>User Agent:</strong> ${clientUA}</p>
@@ -45,18 +45,26 @@ export default async function handler(req, res) {
       <p><em>This notification was sent automatically from your LLM Directory app.</em></p>
     `;
 
-    // TODO: Configure your email service
-    // Example with Resend (uncomment when configured):
-    /*
+    // Configure email service with Resend
     const RESEND_API_KEY = process.env.RESEND_API_KEY;
 
     if (!RESEND_API_KEY) {
-      return res.status(500).json({
-        error: 'Email service not configured',
-        message: 'Please add RESEND_API_KEY to environment variables'
+      // Log the visit even if email not configured
+      console.log('Visit tracked (no email - API key missing):', {
+        timestamp,
+        ip: clientIp,
+        userAgent: clientUA,
+        referrer
+      });
+
+      return res.status(200).json({
+        success: true,
+        message: 'Visit logged (email disabled - no API key)',
+        note: 'Add RESEND_API_KEY to Vercel environment variables to enable emails'
       });
     }
 
+    // Send email notification
     const response = await fetch('https://api.resend.com/emails', {
       method: 'POST',
       headers: {
@@ -74,22 +82,21 @@ export default async function handler(req, res) {
     const data = await response.json();
 
     if (!response.ok) {
+      console.error('Email send failed:', data);
       throw new Error(data.message || 'Failed to send email');
     }
-    */
 
-    // For now, just log the visit
-    console.log('Visit tracked:', {
+    // Log success
+    console.log('Visit tracked and email sent:', {
       timestamp,
       ip: clientIp,
-      userAgent: clientUA,
-      referrer
+      emailId: data.id
     });
 
     return res.status(200).json({
       success: true,
-      message: 'Visit logged',
-      note: 'Email service not yet configured. See api/notify-visit.js to set up.'
+      message: 'Visit logged and email sent',
+      emailId: data.id
     });
 
   } catch (error) {
