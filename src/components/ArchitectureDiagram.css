@@ -1,0 +1,215 @@
+/* Architecture Diagram Container */
+.architecture-diagram-container {
+  width: 100%;
+  margin: 20px 0;
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* SVG Diagram */
+.arch-diagram {
+  width: 100%;
+  height: auto;
+  max-height: 600px;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Diagram Boxes */
+.diagram-box {
+  stroke: #2d3748;
+  stroke-width: 2;
+  transition: all 0.3s ease;
+}
+
+.diagram-box:hover {
+  filter: brightness(0.95);
+  stroke-width: 3;
+}
+
+.input-box {
+  fill: #e6fffa;
+  stroke: #38b2ac;
+}
+
+.embedding-box {
+  fill: #fef5e7;
+  stroke: #f39c12;
+}
+
+.core-box {
+  fill: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  fill: #e8f4f8;
+  stroke: #667eea;
+  stroke-width: 3;
+}
+
+.reasoning-box {
+  fill: #f0e6ff;
+  stroke: #9f7aea;
+}
+
+.safety-box {
+  fill: #fff5f5;
+  stroke: #fc8181;
+}
+
+.output-box {
+  fill: #e6ffed;
+  stroke: #38a169;
+}
+
+.side-box {
+  fill: #f7fafc;
+  stroke: #718096;
+}
+
+.agent-box {
+  fill: #fffaf0;
+  stroke: #ed8936;
+}
+
+/* Text Styles */
+.diagram-title {
+  font-size: 20px;
+  font-weight: 700;
+  fill: #2d3748;
+}
+
+.box-text {
+  font-size: 14px;
+  font-weight: 600;
+  fill: #2d3748;
+}
+
+.box-text-bold {
+  font-size: 16px;
+  font-weight: 700;
+  fill: #667eea;
+}
+
+.box-text-small {
+  font-size: 12px;
+  font-weight: 500;
+  fill: #4a5568;
+}
+
+.box-text-tiny {
+  font-size: 10px;
+  font-weight: 400;
+  fill: #718096;
+}
+
+/* Arrows */
+.arrow {
+  stroke: #667eea;
+  stroke-width: 2.5;
+  fill: none;
+}
+
+.arrow-thin {
+  stroke: #718096;
+  stroke-width: 1.5;
+  fill: none;
+}
+
+/* Legend */
+.diagram-legend {
+  margin-top: 20px;
+  padding: 16px;
+  background: #f7fafc;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+}
+
+.diagram-legend h4 {
+  margin: 0 0 12px 0;
+  font-size: 14px;
+  font-weight: 700;
+  color: #2d3748;
+}
+
+.legend-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.legend-box {
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  border: 2px solid;
+}
+
+.legend-item span {
+  font-size: 12px;
+  color: #4a5568;
+  font-weight: 500;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .architecture-diagram-container {
+    padding: 12px;
+  }
+
+  .arch-diagram {
+    max-height: 400px;
+  }
+
+  .diagram-title {
+    font-size: 16px;
+  }
+
+  .box-text {
+    font-size: 12px;
+  }
+
+  .box-text-bold {
+    font-size: 14px;
+  }
+
+  .box-text-small {
+    font-size: 10px;
+  }
+
+  .legend-items {
+    flex-direction: column;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .arch-diagram {
+    max-height: 300px;
+  }
+
+  .diagram-title {
+    font-size: 14px;
+  }
+
+  .box-text {
+    font-size: 10px;
+  }
+
+  .box-text-bold {
+    font-size: 12px;
+  }
+
+  .box-text-small {
+    font-size: 9px;
+  }
+
+  .box-text-tiny {
+    font-size: 8px;
+  }
+}

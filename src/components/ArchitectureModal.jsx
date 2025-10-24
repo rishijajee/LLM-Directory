@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import './ArchitectureModal.css';
+import ArchitectureDiagram from './ArchitectureDiagram';
 
 const ArchitectureModal = ({ model, onClose }) => {
   // Close modal on ESC key press
@@ -40,6 +41,12 @@ const ArchitectureModal = ({ model, onClose }) => {
         </div>
 
         <div className="modal-body">
+          {/* Architecture Diagram */}
+          <div className="architecture-section">
+            <h3>Visual Architecture</h3>
+            <ArchitectureDiagram architecture={architecture} modelName={name} />
+          </div>
+
           {/* Architecture Overview */}
           <div className="architecture-section">
             <h3>Overview</h3>

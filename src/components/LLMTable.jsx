@@ -1,10 +1,37 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { format } from 'date-fns';
 import ArchitectureModal from './ArchitectureModal';
 
 const LLMTable = ({ models, isLoading }) => {
   const [selectedArchitecture, setSelectedArchitecture] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const topScrollRef = useRef(null);
+  const bottomScrollRef = useRef(null);
+
+  // Synchronize scrollbars
+  useEffect(() => {
+    const topScroll = topScrollRef.current;
+    const bottomScroll = bottomScrollRef.current;
+
+    if (!topScroll || !bottomScroll) return;
+
+    const syncScroll = (source, target) => {
+      return () => {
+        target.scrollLeft = source.scrollLeft;
+      };
+    };
+
+    const handleTopScroll = syncScroll(topScroll, bottomScroll);
+    const handleBottomScroll = syncScroll(bottomScroll, topScroll);
+
+    topScroll.addEventListener('scroll', handleTopScroll);
+    bottomScroll.addEventListener('scroll', handleBottomScroll);
+
+    return () => {
+      topScroll.removeEventListener('scroll', handleTopScroll);
+      bottomScroll.removeEventListener('scroll', handleBottomScroll);
+    };
+  }, [models]);
 
   const handleArchitectureClick = (model) => {
     setSelectedArchitecture(model);
@@ -35,7 +62,13 @@ const LLMTable = ({ models, isLoading }) => {
 
   return (
     <div className="table-container">
-      <div className="table-wrapper">
+      {/* Top Scrollbar */}
+      <div className="scroll-wrapper-top" ref={topScrollRef}>
+        <div className="scroll-content"></div>
+      </div>
+
+      {/* Main Table */}
+      <div className="table-wrapper" ref={bottomScrollRef}>
         <table className="llm-table">
           <thead>
             <tr>
