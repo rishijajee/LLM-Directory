@@ -150,6 +150,54 @@ class WebSearchService {
         keywords: ['cohere', 'command', 'rag', 'enterprise']
       },
       {
+        title: 'Grok - xAI',
+        snippet: 'xAI\'s conversational AI with real-time access to X (Twitter) data. Built for witty and informative responses.',
+        link: 'https://x.ai/',
+        source: 'x.ai',
+        type: 'curated',
+        keywords: ['grok', 'xai', 'x', 'twitter', 'elon', 'musk']
+      },
+      {
+        title: 'Replit AI - Ghostwriter',
+        snippet: 'Replit\'s code-focused AI assistant for pair programming, code completion, and project generation.',
+        link: 'https://replit.com/ai',
+        source: 'replit.com',
+        type: 'curated',
+        keywords: ['replit', 'ghostwriter', 'code', 'programming', 'ai assistant']
+      },
+      {
+        title: 'Perplexity AI',
+        snippet: 'AI-powered answer engine that provides sourced responses with citations. Combines search and LLM capabilities.',
+        link: 'https://www.perplexity.ai/',
+        source: 'perplexity.ai',
+        type: 'curated',
+        keywords: ['perplexity', 'search', 'answer', 'citations', 'research']
+      },
+      {
+        title: 'DeepSeek - DeepSeek AI',
+        snippet: 'Chinese AI company with competitive open-source models focused on reasoning and code generation.',
+        link: 'https://www.deepseek.com/',
+        source: 'deepseek.com',
+        type: 'curated',
+        keywords: ['deepseek', 'chinese', 'open source', 'reasoning', 'code']
+      },
+      {
+        title: 'Yi Models - 01.AI',
+        snippet: 'High-performance bilingual models by Kai-Fu Lee\'s 01.AI with strong Chinese and English capabilities.',
+        link: 'https://www.01.ai/',
+        source: '01.ai',
+        type: 'curated',
+        keywords: ['yi', '01.ai', 'bilingual', 'chinese', 'kai-fu lee']
+      },
+      {
+        title: 'Falcon - TII',
+        snippet: 'Open-source LLMs from Technology Innovation Institute with efficient architecture and strong performance.',
+        link: 'https://falconllm.tii.ae/',
+        source: 'tii.ae',
+        type: 'curated',
+        keywords: ['falcon', 'tii', 'open source', 'uae', 'efficient']
+      },
+      {
         title: 'DALL-E 3 - OpenAI',
         snippet: 'State-of-the-art text-to-image generation model with improved prompt following.',
         link: 'https://openai.com/dall-e-3',
