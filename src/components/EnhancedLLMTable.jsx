@@ -1,6 +1,8 @@
 import React, { useState, useRef, useEffect, useMemo } from 'react';
 import { format } from 'date-fns';
 import ArchitectureModal from './ArchitectureModal';
+import WebSearchResults from './WebSearchResults';
+import webSearchService from '../services/webSearchService';
 import './EnhancedLLMTable.css';
 
 const EnhancedLLMTable = ({ models, isLoading }) => {
@@ -27,6 +29,11 @@ const EnhancedLLMTable = ({ models, isLoading }) => {
     lastUpdated: true
   });
   const [hoveredRow, setHoveredRow] = useState(null);
+
+  // Web search state
+  const [webResults, setWebResults] = useState([]);
+  const [isWebSearching, setIsWebSearching] = useState(false);
+  const [activeTab, setActiveTab] = useState('local'); // 'local' or 'web'
 
   const topScrollRef = useRef(null);
   const bottomScrollRef = useRef(null);
@@ -67,11 +74,38 @@ const EnhancedLLMTable = ({ models, isLoading }) => {
       // ESC to clear search
       if (e.key === 'Escape' && searchTerm) {
         setSearchTerm('');
+        setWebResults([]);
       }
     };
 
     document.addEventListener('keydown', handleKeyPress);
     return () => document.removeEventListener('keydown', handleKeyPress);
+  }, [searchTerm]);
+
+  // Web search effect
+  useEffect(() => {
+    const performWebSearch = async () => {
+      // Only search if there's a query with at least 2 characters
+      if (searchTerm.length < 2) {
+        setWebResults([]);
+        return;
+      }
+
+      setIsWebSearching(true);
+      try {
+        const results = await webSearchService.searchWeb(searchTerm);
+        setWebResults(results);
+      } catch (error) {
+        console.error('Web search failed:', error);
+        setWebResults([]);
+      } finally {
+        setIsWebSearching(false);
+      }
+    };
+
+    // Debounce web search to avoid too many API calls
+    const timeoutId = setTimeout(performWebSearch, 500);
+    return () => clearTimeout(timeoutId);
   }, [searchTerm]);
 
   // Sorting logic
@@ -232,7 +266,26 @@ const EnhancedLLMTable = ({ models, isLoading }) => {
         </div>
       </div>
 
-      {/* Table */}
+      {/* Search Result Tabs */}
+      {searchTerm && (
+        <div className="search-tabs">
+          <button
+            className={`search-tab ${activeTab === 'local' ? 'active' : ''}`}
+            onClick={() => setActiveTab('local')}
+          >
+            📋 Local Results ({filteredModels.length})
+          </button>
+          <button
+            className={`search-tab ${activeTab === 'web' ? 'active' : ''}`}
+            onClick={() => setActiveTab('web')}
+          >
+            🌐 Web Results {isWebSearching ? '(Searching...)' : `(${webResults.length})`}
+          </button>
+        </div>
+      )}
+
+      {/* Local Table Results */}
+      {(!searchTerm || activeTab === 'local') && (
       <div className="table-container">
         {/* Top Scrollbar */}
         <div className="scroll-wrapper-top" ref={topScrollRef}>
@@ -364,6 +417,16 @@ const EnhancedLLMTable = ({ models, isLoading }) => {
           </table>
         </div>
       </div>
+      )}
+
+      {/* Web Search Results */}
+      {searchTerm && activeTab === 'web' && (
+        <WebSearchResults
+          results={webResults}
+          isLoading={isWebSearching}
+          query={searchTerm}
+        />
+      )}
 
       {/* Hover Preview */}
       {hoveredRow && (
