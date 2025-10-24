@@ -42,6 +42,13 @@ const EnhancedLLMTable = ({ models, isLoading }) => {
 
     if (!topScroll || !bottomScroll) return;
 
+    // Set scroll-content width to match table width
+    const table = bottomScroll.querySelector('table');
+    const scrollContent = topScroll.querySelector('.scroll-content');
+    if (table && scrollContent) {
+      scrollContent.style.width = `${table.offsetWidth}px`;
+    }
+
     const syncScroll = (source, target) => {
       return () => {
         target.scrollLeft = source.scrollLeft;
@@ -58,7 +65,7 @@ const EnhancedLLMTable = ({ models, isLoading }) => {
       topScroll.removeEventListener('scroll', handleTopScroll);
       bottomScroll.removeEventListener('scroll', handleBottomScroll);
     };
-  }, [models]);
+  }, [filteredModels]);
 
   // Keyboard shortcuts
   useEffect(() => {

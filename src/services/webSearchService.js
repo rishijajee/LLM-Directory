@@ -29,11 +29,11 @@ class WebSearchService {
     }
 
     try {
-      // Enhanced query for LLM-specific results
+      // Enhanced query for LLM-specific results (only for Google API)
       const enhancedQuery = `${query} LLM large language model AI`;
 
       // Try to search using available API
-      const results = await this.performSearch(enhancedQuery);
+      const results = await this.performSearch(query, enhancedQuery);
 
       // Cache results
       this.searchCache.set(cacheKey, {
@@ -51,17 +51,17 @@ class WebSearchService {
   /**
    * Perform the actual search using available API
    */
-  async performSearch(query) {
+  async performSearch(originalQuery, enhancedQuery) {
     // Check which API is configured
     const googleApiKey = import.meta.env.VITE_GOOGLE_SEARCH_API_KEY;
     const googleSearchEngineId = import.meta.env.VITE_GOOGLE_SEARCH_ENGINE_ID;
 
     if (googleApiKey && googleSearchEngineId) {
-      return await this.googleCustomSearch(query, googleApiKey, googleSearchEngineId);
+      return await this.googleCustomSearch(enhancedQuery, googleApiKey, googleSearchEngineId);
     }
 
-    // If no API configured, use fallback
-    return this.getFallbackResults(query);
+    // If no API configured, use fallback with original query
+    return this.getFallbackResults(originalQuery);
   }
 
   /**
