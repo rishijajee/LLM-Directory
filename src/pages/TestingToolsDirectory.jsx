@@ -139,6 +139,7 @@ function TestingToolsDirectory() {
                       <th>Best For</th>
                       <th>Pricing</th>
                       <th>Key Features</th>
+                      <th>AI/Gen AI Integration</th>
                       <th>Architecture</th>
                     </tr>
                   </thead>
@@ -174,6 +175,18 @@ function TestingToolsDirectory() {
                           </span>
                         </td>
                         <td className="features-col">{tool.features}</td>
+                        <td className="ai-integration-col">
+                          <div className="ai-integration-cell">
+                            <span className={`ai-capability-badge ${tool.aiIntegration.capability.toLowerCase().replace(/[- ]/g, '-')}`}>
+                              {tool.aiIntegration.capability}
+                            </span>
+                            <div className="ai-integration-details">
+                              <strong>{tool.aiIntegration.integration}</strong>
+                              <p className="ai-description">{tool.aiIntegration.description}</p>
+                              <p className="ai-examples"><em>Examples:</em> {tool.aiIntegration.examples}</p>
+                            </div>
+                          </div>
+                        </td>
                         <td className="architecture-col">
                           <button
                             className="view-architecture-btn"
