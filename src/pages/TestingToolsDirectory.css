@@ -318,6 +318,90 @@
   color: #991b1b;
 }
 
+/* Architecture Column */
+.architecture-col {
+  min-width: 120px;
+  text-align: center;
+}
+
+.view-architecture-btn {
+  padding: 0.5rem 1rem;
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.view-architecture-btn:hover {
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3);
+}
+
+.view-architecture-btn:active {
+  transform: translateY(0);
+}
+
+/* Architecture Diagram Styles */
+.detailed-description {
+  background: #f9fafb;
+  border-left: 4px solid #3b82f6;
+  padding: 1rem;
+  border-radius: 4px;
+  margin-top: 0.5rem;
+}
+
+.detailed-description p {
+  line-height: 1.8;
+  color: #374151;
+  margin: 0;
+}
+
+.architecture-diagram {
+  background: #f9fafb;
+  padding: 2rem;
+  border-radius: 8px;
+  margin-top: 1rem;
+  overflow-x: auto;
+}
+
+.diagram-layers {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  min-width: fit-content;
+}
+
+.diagram-layer {
+  flex-shrink: 0;
+}
+
+.layer-box {
+  background: white;
+  border: 2px solid #3b82f6;
+  border-radius: 8px;
+  padding: 1rem 1.5rem;
+  font-weight: 600;
+  color: #1f2937;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(59, 130, 246, 0.1);
+  min-width: 120px;
+}
+
+.diagram-arrow {
+  font-size: 1.5rem;
+  color: #3b82f6;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
 /* Loading Container */
 .loading-container {
   display: flex;

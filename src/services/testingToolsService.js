@@ -15,6 +15,18 @@ export const testingTools = [
     pricing: 'Free (Open Source)',
     features: 'Multi-browser support, parallel execution, extensive community support, integration with CI/CD pipelines',
     website: 'https://www.selenium.dev/',
+    architecture: {
+      type: 'Client-Server Architecture with WebDriver Protocol',
+      components: {
+        'Selenium WebDriver': 'Core API that directly communicates with browsers through browser-specific drivers',
+        'Browser Drivers': 'Native drivers for Chrome, Firefox, Safari, Edge that translate WebDriver commands to browser actions',
+        'Language Bindings': 'Client libraries in Java, Python, C#, Ruby, JavaScript that provide programming interfaces',
+        'Selenium Grid': 'Distributed test execution system for parallel testing across multiple machines and browsers'
+      },
+      layers: '4-tier: Client Code → Language Binding → WebDriver Protocol → Browser Driver → Browser',
+      frameworkPattern: 'Command Pattern with Remote Execution',
+      detailedDescription: 'Selenium uses the W3C WebDriver protocol as a communication standard. Tests written in any supported language are converted to HTTP requests following the WebDriver protocol. These requests are sent to browser-specific drivers (ChromeDriver, GeckoDriver, etc.) which execute the commands natively in the browser. Selenium Grid adds a hub-node architecture for distributed testing, where the hub routes test requests to available nodes running different browser/OS combinations.'
+    },
     lastUpdated: new Date().toISOString()
   },
   {
@@ -28,6 +40,18 @@ export const testingTools = [
     pricing: 'Free (Open Source) / Premium Cloud Features',
     features: 'Real-time reloads, time-travel debugging, automatic waiting, screenshot & video recording',
     website: 'https://www.cypress.io/',
+    architecture: {
+      type: 'Node.js-based In-Browser Test Execution',
+      components: {
+        'Test Runner': 'Interactive GUI that executes tests and displays results in real-time with time-travel debugging',
+        'Cypress Server': 'Node.js server that orchestrates test execution and communicates with the browser',
+        'Browser Proxy': 'Network proxy that intercepts and modifies HTTP requests/responses for testing',
+        'Command Queue': 'Asynchronous command execution system with automatic retry and waiting logic'
+      },
+      layers: '3-tier: Test Code → Cypress Server → Browser (same event loop)',
+      frameworkPattern: 'In-Process Testing with Proxy Network Layer',
+      detailedDescription: 'Unlike Selenium, Cypress runs directly inside the browser alongside your application, sharing the same event loop. This allows direct access to DOM, window, and application state. The Cypress server acts as a reverse proxy, intercepting all network traffic to enable request stubbing, response modification, and network testing. Tests are written as asynchronous command chains that automatically retry and wait for elements, eliminating flaky tests from timing issues.'
+    },
     lastUpdated: new Date().toISOString()
   },
   {
@@ -41,6 +65,18 @@ export const testingTools = [
     pricing: 'Free (Open Source)',
     features: 'Auto-wait, multiple browser contexts, mobile emulation, network interception',
     website: 'https://playwright.dev/',
+    architecture: {
+      type: 'Multi-Browser DevTools Protocol Architecture',
+      components: {
+        'Browser Server': 'Dedicated browser instances controlled via DevTools Protocol (CDP for Chromium, custom for Firefox/WebKit)',
+        'Page Contexts': 'Isolated browser contexts (like incognito windows) that don\'t share cookies/cache',
+        'Auto-Waiting Engine': 'Smart waiting system that checks element actionability before interacting',
+        'Network Interceptor': 'Route-based request/response interception and modification at the protocol level'
+      },
+      layers: '4-tier: Test Code → Playwright API → DevTools Protocol → Browser Engine',
+      frameworkPattern: 'Multi-Context Parallel Execution with Protocol-Level Control',
+      detailedDescription: 'Playwright leverages browser DevTools protocols (CDP for Chromium, proprietary for Firefox/WebKit) to achieve deep browser control. Each test can spawn multiple isolated browser contexts in parallel, enabling efficient test execution. The auto-waiting mechanism inspects element properties (visibility, stability, enabled state) before actions, eliminating explicit waits. Network interception works at the protocol level, allowing request modification, mocking, and HAR recording without proxies.'
+    },
     lastUpdated: new Date().toISOString()
   },
   {
@@ -106,6 +142,18 @@ export const testingTools = [
     pricing: 'Free (Open Source)',
     features: 'Zero config, snapshot testing, mocking, code coverage, parallel test execution',
     website: 'https://jestjs.io/',
+    architecture: {
+      type: 'Parallel Test Runner with Isolated Execution Environments',
+      components: {
+        'Test Runner': 'Worker pool that executes tests in parallel across multiple processes for speed',
+        'JSDOM Environment': 'Simulated browser environment for testing DOM manipulation without a real browser',
+        'Module Mocker': 'Automatic function and module mocking system with manual mock overrides',
+        'Snapshot Engine': 'Serializes component output to files for regression testing of UI changes'
+      },
+      layers: '3-tier: Test Files → Jest Runner → Node.js Worker Processes',
+      frameworkPattern: 'Worker Pool Pattern with Sandboxed Execution',
+      detailedDescription: 'Jest uses a worker pool architecture where tests are distributed across multiple Node.js processes for parallel execution. Each test file runs in an isolated environment with its own global scope, preventing test interference. The test runner automatically mocks modules by intercepting require() calls, allowing easy dependency isolation. For React testing, Jest uses JSDOM to simulate a browser environment in Node.js, enabling DOM testing without spinning up real browsers. Snapshot testing serializes component output (JSX, objects) to __snapshots__ files, which are version-controlled and compared on subsequent runs.'
+    },
     lastUpdated: new Date().toISOString()
   },
   {
@@ -236,6 +284,18 @@ export const testingTools = [
     pricing: 'Free (Open Source)',
     features: 'Protocol support (HTTP, JDBC, SOAP, etc.), distributed testing, GUI and CLI modes',
     website: 'https://jmeter.apache.org/',
+    architecture: {
+      type: 'Master-Slave Distributed Load Generation',
+      components: {
+        'Test Plan Engine': 'Orchestrates test execution based on thread groups, samplers, and controllers',
+        'Thread Groups': 'Simulate concurrent users with configurable ramp-up periods and iteration counts',
+        'Protocol Samplers': 'Pluggable samplers for HTTP, JDBC, JMS, FTP, SMTP, and other protocols',
+        'Listeners & Reporters': 'Real-time and post-execution result collectors with statistical aggregation'
+      },
+      layers: '3-tier: Test Plan → Thread Pool → Protocol Samplers',
+      frameworkPattern: 'Distributed Master-Slave with Plugin Architecture',
+      detailedDescription: 'JMeter uses a master-slave architecture for distributed load generation. The master (controller) coordinates multiple slave (remote) instances to generate massive load from different machines. Each JMeter instance creates thread groups that simulate virtual users. Threads execute samplers (HTTP requests, database queries, etc.) according to the test plan logic (loops, conditionals, timers). Results are collected by listeners and aggregated into reports showing metrics like response times, throughput, error rates. The plugin system allows custom samplers, listeners, and functions to be added without modifying core code.'
+    },
     lastUpdated: new Date().toISOString()
   },
   {
@@ -331,6 +391,28 @@ export const testingTools = [
   }
 ];
 
+// Add generic architecture to tools that don't have detailed architecture
+const enrichToolsWithArchitecture = (tools) => {
+  return tools.map(tool => {
+    if (!tool.architecture) {
+      // Generic architecture based on tool category
+      tool.architecture = {
+        type: `${tool.category} Framework`,
+        components: {
+          'Test Engine': `Core ${tool.toolName} engine that executes test cases and validates results`,
+          'API Layer': `Programming interface for writing tests in ${tool.supportedLanguages}`,
+          'Reporter': 'Test result collection and reporting system with various output formats',
+          'Integration Layer': 'Connectors for CI/CD pipelines and development tools'
+        },
+        layers: '3-tier: Test Code → Framework Engine → Target System',
+        frameworkPattern: 'Standard Test Framework Pattern',
+        detailedDescription: `${tool.toolName} follows a standard testing framework architecture where test code is written using the framework's API, executed by the test engine, and results are collected and reported. The framework provides assertions, test organization, and integration capabilities to streamline the testing process for ${tool.bestFor}.`
+      };
+    }
+    return tool;
+  });
+};
+
 /**
  * Get all testing tools
  */
@@ -345,7 +427,7 @@ export const getAllTestingTools = () => {
   });
 
   return {
-    tools: testingTools,
+    tools: enrichToolsWithArchitecture(testingTools),
     lastUpdateTime,
     totalCount: testingTools.length
   };

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { getAllTestingTools, getCategories, filterByCategory } from '../services/testingToolsService';
+import TestingToolArchitectureModal from '../components/TestingToolArchitectureModal';
 import '../App.css';
 import './TestingToolsDirectory.css';
 
@@ -11,6 +12,8 @@ function TestingToolsDirectory() {
   const [categories, setCategories] = useState([]);
   const [lastUpdateTime, setLastUpdateTime] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [selectedTool, setSelectedTool] = useState(null);
+  const [showArchitectureModal, setShowArchitectureModal] = useState(false);
 
   useEffect(() => {
     loadTestingTools();
@@ -39,6 +42,16 @@ function TestingToolsDirectory() {
 
   const handleCategoryChange = (e) => {
     setSelectedCategory(e.target.value);
+  };
+
+  const handleViewArchitecture = (tool) => {
+    setSelectedTool(tool);
+    setShowArchitectureModal(true);
+  };
+
+  const handleCloseArchitectureModal = () => {
+    setShowArchitectureModal(false);
+    setSelectedTool(null);
   };
 
   return (
@@ -126,6 +139,7 @@ function TestingToolsDirectory() {
                       <th>Best For</th>
                       <th>Pricing</th>
                       <th>Key Features</th>
+                      <th>Architecture</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -160,6 +174,15 @@ function TestingToolsDirectory() {
                           </span>
                         </td>
                         <td className="features-col">{tool.features}</td>
+                        <td className="architecture-col">
+                          <button
+                            className="view-architecture-btn"
+                            onClick={() => handleViewArchitecture(tool)}
+                            title="View detailed architecture"
+                          >
+                            View Details
+                          </button>
+                        </td>
                       </tr>
                     ))}
                   </tbody>
@@ -176,6 +199,14 @@ function TestingToolsDirectory() {
           Comprehensive directory of automated testing tools and platforms
         </p>
       </footer>
+
+      {/* Architecture Modal */}
+      {showArchitectureModal && selectedTool && (
+        <TestingToolArchitectureModal
+          tool={selectedTool}
+          onClose={handleCloseArchitectureModal}
+        />
+      )}
     </div>
   );
 }
