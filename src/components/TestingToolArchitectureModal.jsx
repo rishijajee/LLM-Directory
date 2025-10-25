@@ -92,24 +92,94 @@ const TestingToolArchitectureModal = ({ tool, onClose }) => {
             </div>
           </div>
 
-          {/* Architecture Diagram (Visual Representation) */}
+          {/* Architecture Diagram - Layer Flow */}
           <div className="architecture-section">
-            <h3>Architecture Visualization</h3>
+            <h3>📐 Architecture Diagram - Layer Flow</h3>
+            <p className="diagram-subtitle">Data flow through the testing framework layers</p>
             <div className="architecture-diagram">
               <div className="diagram-layers">
                 {architecture.layers.split('→').map((layer, index) => (
                   <React.Fragment key={index}>
                     <div className="diagram-layer">
                       <div className="layer-box">
-                        {layer.trim()}
+                        <div className="layer-number">{index + 1}</div>
+                        <div className="layer-name">{layer.trim()}</div>
                       </div>
                     </div>
                     {index < architecture.layers.split('→').length - 1 && (
-                      <div className="diagram-arrow">→</div>
+                      <div className="diagram-arrow">
+                        <svg width="40" height="40" viewBox="0 0 40 40" className="arrow-svg">
+                          <path d="M5 20 L30 20 M30 20 L25 15 M30 20 L25 25" stroke="currentColor" strokeWidth="2" fill="none" />
+                        </svg>
+                      </div>
                     )}
                   </React.Fragment>
                 ))}
               </div>
+            </div>
+          </div>
+
+          {/* Framework Diagram - Component Interaction */}
+          <div className="architecture-section">
+            <h3>🔧 Framework Diagram - Component Interaction</h3>
+            <p className="diagram-subtitle">How framework components interact during test execution</p>
+            <div className="framework-diagram">
+              <div className="framework-visual">
+                {/* Central Test Engine */}
+                <div className="framework-center">
+                  <div className="center-node">
+                    <div className="node-icon">⚙️</div>
+                    <div className="node-label">Test Engine</div>
+                    <div className="node-sublabel">{toolName}</div>
+                  </div>
+                </div>
+
+                {/* Component Nodes around center */}
+                <div className="framework-components">
+                  {Object.entries(architecture.components).slice(0, 4).map(([component, description], index) => {
+                    const positions = [
+                      { top: '0%', left: '50%', transform: 'translate(-50%, -120%)' },      // Top
+                      { top: '50%', right: '-10%', transform: 'translate(0%, -50%)' },     // Right
+                      { bottom: '0%', left: '50%', transform: 'translate(-50%, 120%)' },   // Bottom
+                      { top: '50%', left: '-10%', transform: 'translate(-100%, -50%)' }    // Left
+                    ];
+
+                    return (
+                      <div
+                        key={component}
+                        className="component-node"
+                        style={positions[index]}
+                      >
+                        <div className="node-box">
+                          <div className="node-header">{component}</div>
+                          <div className="node-desc">{description.substring(0, 50)}...</div>
+                        </div>
+                        <div className={`connector connector-${index}`}></div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Legend */}
+              <div className="framework-legend">
+                <div className="legend-title">Framework Pattern:</div>
+                <div className="legend-value">{architecture.frameworkPattern || 'Standard Test Framework Pattern'}</div>
+              </div>
+
+              {/* Additional Components List */}
+              {Object.keys(architecture.components).length > 4 && (
+                <div className="additional-components">
+                  <div className="additional-title">Additional Components:</div>
+                  <div className="additional-list">
+                    {Object.entries(architecture.components).slice(4).map(([component, description]) => (
+                      <div key={component} className="additional-item">
+                        <strong>{component}:</strong> {description}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>
