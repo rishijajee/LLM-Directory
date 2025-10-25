@@ -497,6 +497,714 @@ const ToscaDetailPage = () => {
                     </div>
                   </div>
                 </div>
+
+                {/* Detailed Architecture Diagram */}
+                <div className="detailed-architecture-section">
+                  <h3>📐 Detailed TOSCA Architecture Diagram</h3>
+                  <p className="diagram-subtitle">Complete end-to-end architecture with all components and data flows</p>
+
+                  <div className="detailed-arch-container">
+                    {/* User Interface Tier */}
+                    <div className="arch-tier">
+                      <div className="tier-header">
+                        <h4>👤 User Interface Tier</h4>
+                      </div>
+                      <div className="tier-components">
+                        <div className="detailed-component">
+                          <div className="component-name">TOSCA Commander (Desktop Client)</div>
+                          <div className="component-desc">
+                            <strong>Technology:</strong> WPF, C#, .NET Framework
+                            <br/><strong>Functions:</strong>
+                            <ul>
+                              <li>Test case design & modeling</li>
+                              <li>Module library management</li>
+                              <li>Application scanning</li>
+                              <li>Execution control</li>
+                              <li>Local test debugging</li>
+                            </ul>
+                          </div>
+                        </div>
+                        <div className="detailed-component">
+                          <div className="component-name">TOSCA ARA (Web Portal)</div>
+                          <div className="component-desc">
+                            <strong>Technology:</strong> Angular, TypeScript, REST API
+                            <br/><strong>Functions:</strong>
+                            <ul>
+                              <li>Real-time dashboards</li>
+                              <li>Execution monitoring</li>
+                              <li>Trend analysis & reporting</li>
+                              <li>Team collaboration</li>
+                              <li>Test result visualization</li>
+                            </ul>
+                          </div>
+                        </div>
+                        <div className="detailed-component">
+                          <div className="component-name">TOSCA CI Client</div>
+                          <div className="component-desc">
+                            <strong>Technology:</strong> Command-line executable
+                            <br/><strong>Functions:</strong>
+                            <ul>
+                              <li>Headless test execution</li>
+                              <li>CI/CD pipeline integration</li>
+                              <li>Return exit codes</li>
+                              <li>Generate XML/JSON reports</li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="tier-connector">↓ API Calls / Database Queries ↓</div>
+
+                    {/* Application Services Tier */}
+                    <div className="arch-tier">
+                      <div className="tier-header">
+                        <h4>⚙️ Application Services Tier</h4>
+                      </div>
+                      <div className="tier-components">
+                        <div className="detailed-component">
+                          <div className="component-name">Test Case Design Service</div>
+                          <div className="component-desc">
+                            <strong>Responsibilities:</strong>
+                            <ul>
+                              <li>Parse and validate TestCase structures</li>
+                              <li>Manage test step orchestration</li>
+                              <li>Handle test case versioning</li>
+                              <li>Support parameterization & data binding</li>
+                            </ul>
+                          </div>
+                        </div>
+                        <div className="detailed-component">
+                          <div className="component-name">Module Management Service</div>
+                          <div className="component-desc">
+                            <strong>Responsibilities:</strong>
+                            <ul>
+                              <li>Store reusable test modules</li>
+                              <li>Manage module attributes & properties</li>
+                              <li>Handle module inheritance</li>
+                              <li>Enable module search & discovery</li>
+                            </ul>
+                          </div>
+                        </div>
+                        <div className="detailed-component">
+                          <div className="component-name">Scanning Service</div>
+                          <div className="component-desc">
+                            <strong>Responsibilities:</strong>
+                            <ul>
+                              <li>Scan application UIs (Web, Desktop, Mobile)</li>
+                              <li>Extract technical properties</li>
+                              <li>Create object models</li>
+                              <li>Support dynamic element recognition</li>
+                            </ul>
+                          </div>
+                        </div>
+                        <div className="detailed-component">
+                          <div className="component-name">Risk-Based Testing Engine</div>
+                          <div className="component-desc">
+                            <strong>Responsibilities:</strong>
+                            <ul>
+                              <li>Analyze code changes</li>
+                              <li>Calculate risk scores</li>
+                              <li>Prioritize test execution</li>
+                              <li>ML-based defect prediction</li>
+                            </ul>
+                          </div>
+                        </div>
+                        <div className="detailed-component">
+                          <div className="component-name">Test Data Service (TDS)</div>
+                          <div className="component-desc">
+                            <strong>Responsibilities:</strong>
+                            <ul>
+                              <li>Data provisioning & subsetting</li>
+                              <li>PII masking & anonymization</li>
+                              <li>Synthetic data generation</li>
+                              <li>Data refresh automation</li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="tier-connector">↓ Execution Requests ↓</div>
+
+                    {/* Execution Engine Tier */}
+                    <div className="arch-tier">
+                      <div className="tier-header">
+                        <h4>🚀 Execution Engine Tier</h4>
+                      </div>
+                      <div className="tier-components">
+                        <div className="detailed-component">
+                          <div className="component-name">Execution Orchestrator</div>
+                          <div className="component-desc">
+                            <strong>Responsibilities:</strong>
+                            <ul>
+                              <li>Distribute tests to execution agents</li>
+                              <li>Manage execution queues</li>
+                              <li>Handle parallel execution</li>
+                              <li>Monitor agent health</li>
+                            </ul>
+                          </div>
+                        </div>
+                        <div className="detailed-component">
+                          <div className="component-name">TOSCA Execution Agents</div>
+                          <div className="component-desc">
+                            <strong>Deployment:</strong> On-premise VMs, Cloud, Docker containers
+                            <br/><strong>Functions:</strong>
+                            <ul>
+                              <li>Execute test steps</li>
+                              <li>Interact with applications</li>
+                              <li>Capture screenshots</li>
+                              <li>Collect execution logs</li>
+                            </ul>
+                          </div>
+                        </div>
+                        <div className="detailed-component">
+                          <div className="component-name">UI Automation Engines</div>
+                          <div className="component-desc">
+                            <strong>Technologies:</strong>
+                            <ul>
+                              <li><strong>Web:</strong> Selenium WebDriver, ChromeDriver</li>
+                              <li><strong>Mobile:</strong> Appium, XCUITest, Espresso</li>
+                              <li><strong>Desktop:</strong> WinAppDriver, UI Automation</li>
+                              <li><strong>SAP:</strong> SAP GUI Scripting API</li>
+                            </ul>
+                          </div>
+                        </div>
+                        <div className="detailed-component">
+                          <div className="component-name">API Testing Engine</div>
+                          <div className="component-desc">
+                            <strong>Protocols:</strong> REST, SOAP, GraphQL, gRPC
+                            <br/><strong>Functions:</strong>
+                            <ul>
+                              <li>Send HTTP requests</li>
+                              <li>Validate response schemas</li>
+                              <li>Assert status codes & headers</li>
+                              <li>Chain API calls</li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="tier-connector">↓ Integration Calls ↓</div>
+
+                    {/* Integration Tier */}
+                    <div className="arch-tier">
+                      <div className="tier-header">
+                        <h4>🔗 Integration Tier</h4>
+                      </div>
+                      <div className="tier-components">
+                        <div className="detailed-component">
+                          <div className="component-name">CI/CD Connectors</div>
+                          <div className="component-desc">
+                            <strong>Supported Tools:</strong> Jenkins, Azure DevOps, GitLab, Bamboo, TeamCity
+                            <br/><strong>Integration Method:</strong> REST API, Plugins, CLI
+                          </div>
+                        </div>
+                        <div className="detailed-component">
+                          <div className="component-name">Test Management Connectors</div>
+                          <div className="component-desc">
+                            <strong>Supported Tools:</strong> Jira, Xray, qTest, TestRail, HP ALM
+                            <br/><strong>Sync:</strong> Bi-directional test case & result sync
+                          </div>
+                        </div>
+                        <div className="detailed-component">
+                          <div className="component-name">Service Virtualization</div>
+                          <div className="component-desc">
+                            <strong>Capabilities:</strong>
+                            <ul>
+                              <li>Record & replay API traffic</li>
+                              <li>Mock external services</li>
+                              <li>Simulate latency & errors</li>
+                              <li>Support HTTPS, protocols</li>
+                            </ul>
+                          </div>
+                        </div>
+                        <div className="detailed-component">
+                          <div className="component-name">Device Farms Integration</div>
+                          <div className="component-desc">
+                            <strong>Providers:</strong> Sauce Labs, BrowserStack, AWS Device Farm
+                            <br/><strong>Access:</strong> Real devices & emulators via APIs
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="tier-connector">↓ Data Persistence ↓</div>
+
+                    {/* Data Layer */}
+                    <div className="arch-tier">
+                      <div className="tier-header">
+                        <h4>💾 Data & Repository Layer</h4>
+                      </div>
+                      <div className="tier-components">
+                        <div className="detailed-component">
+                          <div className="component-name">TOSCA Repository (SQL Server)</div>
+                          <div className="component-desc">
+                            <strong>Stores:</strong>
+                            <ul>
+                              <li><strong>Test Assets:</strong> TestCases, Modules, TestSteps</li>
+                              <li><strong>Application Models:</strong> Scanned objects, properties</li>
+                              <li><strong>Execution Results:</strong> Logs, screenshots, metrics</li>
+                              <li><strong>Test Data:</strong> Parameters, datasets</li>
+                              <li><strong>Configuration:</strong> Execution lists, settings</li>
+                            </ul>
+                            <strong>Database Schema:</strong> 150+ tables with relationships
+                          </div>
+                        </div>
+                        <div className="detailed-component">
+                          <div className="component-name">Version Control Integration</div>
+                          <div className="component-desc">
+                            <strong>Supported:</strong> Git, SVN, TFS
+                            <br/><strong>Versioning:</strong>
+                            <ul>
+                              <li>Commit test assets to repositories</li>
+                              <li>Branch & merge test cases</li>
+                              <li>Track change history</li>
+                              <li>Support team collaboration</li>
+                            </ul>
+                          </div>
+                        </div>
+                        <div className="detailed-component">
+                          <div className="component-name">File System Storage</div>
+                          <div className="component-desc">
+                            <strong>Stores:</strong>
+                            <ul>
+                              <li>Screenshots & videos</li>
+                              <li>Execution logs (XML, JSON)</li>
+                              <li>Test data files (Excel, CSV)</li>
+                              <li>Import/export packages</li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="tier-connector">← Monitoring & Analytics →</div>
+
+                    {/* Cross-Cutting Concerns */}
+                    <div className="arch-tier cross-cutting">
+                      <div className="tier-header">
+                        <h4>📊 Cross-Cutting Services</h4>
+                      </div>
+                      <div className="tier-components">
+                        <div className="detailed-component">
+                          <div className="component-name">Logging & Monitoring</div>
+                          <div className="component-desc">
+                            Integration with Splunk, ELK, Grafana, Datadog
+                          </div>
+                        </div>
+                        <div className="detailed-component">
+                          <div className="component-name">Security & Authentication</div>
+                          <div className="component-desc">
+                            Windows Auth, LDAP, SSO, Role-based access control
+                          </div>
+                        </div>
+                        <div className="detailed-component">
+                          <div className="component-name">License Management</div>
+                          <div className="component-desc">
+                            Floating licenses, concurrent user management
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Supported Application Types */}
+                <div className="supported-apps-section">
+                  <h3>🎯 Application Types Supported by TOSCA</h3>
+                  <p className="diagram-subtitle">Comprehensive list of all application types and technologies TOSCA can test</p>
+
+                  <div className="app-types-grid">
+                    {/* Web Applications */}
+                    <div className="app-type-card">
+                      <div className="app-type-header">
+                        <span className="app-type-icon">🌐</span>
+                        <h4>Web Applications</h4>
+                      </div>
+                      <div className="app-type-content">
+                        <div className="tech-category">
+                          <strong>Browsers:</strong>
+                          <p>Chrome, Firefox, Edge, Safari, Internet Explorer 11, Opera</p>
+                        </div>
+                        <div className="tech-category">
+                          <strong>Technologies:</strong>
+                          <ul>
+                            <li>HTML5, CSS3, JavaScript</li>
+                            <li>Single Page Applications (Angular, React, Vue.js)</li>
+                            <li>jQuery, Bootstrap</li>
+                            <li>Web Components, Shadow DOM</li>
+                            <li>AJAX, Fetch API</li>
+                            <li>Progressive Web Apps (PWA)</li>
+                          </ul>
+                        </div>
+                        <div className="tech-category">
+                          <strong>Frameworks:</strong>
+                          <p>Angular, React, Vue, Ember, Backbone, Knockout, Blazor</p>
+                        </div>
+                        <div className="tech-category">
+                          <strong>Authentication:</strong>
+                          <p>OAuth, SAML, Basic Auth, JWT, Multi-factor Authentication</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Mobile Applications */}
+                    <div className="app-type-card">
+                      <div className="app-type-header">
+                        <span className="app-type-icon">📱</span>
+                        <h4>Mobile Applications</h4>
+                      </div>
+                      <div className="app-type-content">
+                        <div className="tech-category">
+                          <strong>Platforms:</strong>
+                          <ul>
+                            <li>iOS (iPhone, iPad) - iOS 12+</li>
+                            <li>Android (Phone, Tablet) - Android 7+</li>
+                          </ul>
+                        </div>
+                        <div className="tech-category">
+                          <strong>Application Types:</strong>
+                          <ul>
+                            <li>Native Apps (Swift, Objective-C, Kotlin, Java)</li>
+                            <li>Hybrid Apps (Cordova, Ionic, PhoneGap)</li>
+                            <li>Cross-Platform (React Native, Flutter, Xamarin)</li>
+                            <li>Mobile Web (Responsive websites)</li>
+                          </ul>
+                        </div>
+                        <div className="tech-category">
+                          <strong>Execution:</strong>
+                          <ul>
+                            <li>Real Devices (USB connected)</li>
+                            <li>iOS Simulator, Android Emulator</li>
+                            <li>Cloud Device Farms (BrowserStack, Sauce Labs, AWS Device Farm)</li>
+                          </ul>
+                        </div>
+                        <div className="tech-category">
+                          <strong>Gestures:</strong>
+                          <p>Tap, Swipe, Pinch, Zoom, Rotate, Long Press, Drag & Drop</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Desktop Applications */}
+                    <div className="app-type-card">
+                      <div className="app-type-header">
+                        <span className="app-type-icon">🖥️</span>
+                        <h4>Desktop Applications</h4>
+                      </div>
+                      <div className="app-type-content">
+                        <div className="tech-category">
+                          <strong>Windows Applications:</strong>
+                          <ul>
+                            <li>WPF (Windows Presentation Foundation)</li>
+                            <li>WinForms (Windows Forms)</li>
+                            <li>Win32, MFC, ATL</li>
+                            <li>UWP (Universal Windows Platform)</li>
+                            <li>Electron Apps (Teams, Slack, VS Code)</li>
+                          </ul>
+                        </div>
+                        <div className="tech-category">
+                          <strong>Java Applications:</strong>
+                          <ul>
+                            <li>Swing, AWT</li>
+                            <li>JavaFX</li>
+                            <li>SWT (Standard Widget Toolkit)</li>
+                          </ul>
+                        </div>
+                        <div className="tech-category">
+                          <strong>.NET Applications:</strong>
+                          <ul>
+                            <li>.NET Framework (2.0 - 4.8)</li>
+                            <li>.NET Core, .NET 5/6/7/8</li>
+                            <li>DevExpress, Telerik, Infragistics controls</li>
+                          </ul>
+                        </div>
+                        <div className="tech-category">
+                          <strong>Other:</strong>
+                          <p>Qt, Delphi, PowerBuilder, Terminal Emulators</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Enterprise Applications */}
+                    <div className="app-type-card">
+                      <div className="app-type-header">
+                        <span className="app-type-icon">🏢</span>
+                        <h4>Enterprise Applications</h4>
+                      </div>
+                      <div className="app-type-content">
+                        <div className="tech-category">
+                          <strong>SAP:</strong>
+                          <ul>
+                            <li>SAP GUI (SAPGUI for Windows)</li>
+                            <li>SAP Fiori (Web-based UI)</li>
+                            <li>SAP S/4HANA</li>
+                            <li>SAP Business Objects</li>
+                            <li>SAP SuccessFactors</li>
+                            <li>SAP Ariba, SAP Concur</li>
+                          </ul>
+                        </div>
+                        <div className="tech-category">
+                          <strong>Salesforce:</strong>
+                          <ul>
+                            <li>Salesforce Lightning</li>
+                            <li>Salesforce Classic</li>
+                            <li>Custom Salesforce Apps</li>
+                            <li>Salesforce CPQ</li>
+                          </ul>
+                        </div>
+                        <div className="tech-category">
+                          <strong>Oracle:</strong>
+                          <ul>
+                            <li>Oracle Forms</li>
+                            <li>Oracle E-Business Suite (EBS)</li>
+                            <li>Oracle Siebel</li>
+                            <li>Oracle PeopleSoft</li>
+                          </ul>
+                        </div>
+                        <div className="tech-category">
+                          <strong>Other Enterprise Apps:</strong>
+                          <ul>
+                            <li>ServiceNow</li>
+                            <li>Workday (HCM, Finance)</li>
+                            <li>Microsoft Dynamics 365</li>
+                            <li>Siemens Teamcenter</li>
+                            <li>Guidewire</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Mainframe & Legacy */}
+                    <div className="app-type-card">
+                      <div className="app-type-header">
+                        <span className="app-type-icon">🖳</span>
+                        <h4>Mainframe & Legacy Systems</h4>
+                      </div>
+                      <div className="app-type-content">
+                        <div className="tech-category">
+                          <strong>Terminal Emulators:</strong>
+                          <ul>
+                            <li>IBM 3270 (TN3270)</li>
+                            <li>IBM 5250 (TN5250)</li>
+                            <li>VT100, VT220 terminals</li>
+                          </ul>
+                        </div>
+                        <div className="tech-category">
+                          <strong>Emulator Software:</strong>
+                          <ul>
+                            <li>IBM PCOMM (Personal Communications)</li>
+                            <li>Attachmate Extra!</li>
+                            <li>Rocket BlueZone</li>
+                            <li>Micro Focus Reflection</li>
+                          </ul>
+                        </div>
+                        <div className="tech-category">
+                          <strong>Mainframe Systems:</strong>
+                          <ul>
+                            <li>IBM z/OS, z/VSE</li>
+                            <li>IBM AS/400, iSeries</li>
+                            <li>CICS, IMS</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* API & Web Services */}
+                    <div className="app-type-card">
+                      <div className="app-type-header">
+                        <span className="app-type-icon">🔌</span>
+                        <h4>APIs & Web Services</h4>
+                      </div>
+                      <div className="app-type-content">
+                        <div className="tech-category">
+                          <strong>Protocols:</strong>
+                          <ul>
+                            <li>REST (JSON, XML)</li>
+                            <li>SOAP (WSDL)</li>
+                            <li>GraphQL</li>
+                            <li>gRPC</li>
+                            <li>WebSockets</li>
+                            <li>OData</li>
+                          </ul>
+                        </div>
+                        <div className="tech-category">
+                          <strong>Authentication:</strong>
+                          <ul>
+                            <li>OAuth 2.0, OAuth 1.0</li>
+                            <li>API Keys</li>
+                            <li>Bearer Tokens</li>
+                            <li>Basic Authentication</li>
+                            <li>NTLM, Kerberos</li>
+                          </ul>
+                        </div>
+                        <div className="tech-category">
+                          <strong>Import Formats:</strong>
+                          <p>OpenAPI/Swagger, WSDL, Postman Collections, RAML</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Database Testing */}
+                    <div className="app-type-card">
+                      <div className="app-type-header">
+                        <span className="app-type-icon">💿</span>
+                        <h4>Database Testing</h4>
+                      </div>
+                      <div className="app-type-content">
+                        <div className="tech-category">
+                          <strong>Relational Databases:</strong>
+                          <ul>
+                            <li>Microsoft SQL Server</li>
+                            <li>Oracle Database</li>
+                            <li>MySQL, MariaDB</li>
+                            <li>PostgreSQL</li>
+                            <li>IBM DB2</li>
+                            <li>SQLite</li>
+                          </ul>
+                        </div>
+                        <div className="tech-category">
+                          <strong>NoSQL Databases:</strong>
+                          <ul>
+                            <li>MongoDB</li>
+                            <li>Cassandra</li>
+                            <li>Redis</li>
+                            <li>Couchbase</li>
+                          </ul>
+                        </div>
+                        <div className="tech-category">
+                          <strong>Capabilities:</strong>
+                          <ul>
+                            <li>Execute SQL queries</li>
+                            <li>Validate query results</li>
+                            <li>Data setup & teardown</li>
+                            <li>Stored procedure testing</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Cloud & Containerized Apps */}
+                    <div className="app-type-card">
+                      <div className="app-type-header">
+                        <span className="app-type-icon">☁️</span>
+                        <h4>Cloud & Containerized Applications</h4>
+                      </div>
+                      <div className="app-type-content">
+                        <div className="tech-category">
+                          <strong>Cloud Platforms:</strong>
+                          <ul>
+                            <li>AWS (EC2, Lambda, S3, RDS)</li>
+                            <li>Microsoft Azure (VMs, Functions, Storage)</li>
+                            <li>Google Cloud Platform (GCP)</li>
+                            <li>Heroku, DigitalOcean</li>
+                          </ul>
+                        </div>
+                        <div className="tech-category">
+                          <strong>Containers:</strong>
+                          <ul>
+                            <li>Docker containers</li>
+                            <li>Kubernetes orchestrated apps</li>
+                            <li>OpenShift</li>
+                          </ul>
+                        </div>
+                        <div className="tech-category">
+                          <strong>Serverless:</strong>
+                          <ul>
+                            <li>AWS Lambda functions</li>
+                            <li>Azure Functions</li>
+                            <li>Google Cloud Functions</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Specialized Applications */}
+                    <div className="app-type-card">
+                      <div className="app-type-header">
+                        <span className="app-type-icon">⚡</span>
+                        <h4>Specialized Applications</h4>
+                      </div>
+                      <div className="app-type-content">
+                        <div className="tech-category">
+                          <strong>Citrix:</strong>
+                          <ul>
+                            <li>Citrix Virtual Apps (XenApp)</li>
+                            <li>Citrix Virtual Desktops (XenDesktop)</li>
+                            <li>Image-based testing for Citrix</li>
+                          </ul>
+                        </div>
+                        <div className="tech-category">
+                          <strong>PDF Testing:</strong>
+                          <ul>
+                            <li>PDF content validation</li>
+                            <li>Text extraction</li>
+                            <li>Image comparison</li>
+                          </ul>
+                        </div>
+                        <div className="tech-category">
+                          <strong>File Systems:</strong>
+                          <ul>
+                            <li>File operations (create, read, delete)</li>
+                            <li>Excel, CSV file validation</li>
+                            <li>XML, JSON file parsing</li>
+                          </ul>
+                        </div>
+                        <div className="tech-category">
+                          <strong>Email Testing:</strong>
+                          <ul>
+                            <li>SMTP, IMAP, POP3</li>
+                            <li>Email content validation</li>
+                            <li>Attachment verification</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Accessibility & Compliance */}
+                    <div className="app-type-card">
+                      <div className="app-type-header">
+                        <span className="app-type-icon">♿</span>
+                        <h4>Accessibility & Compliance Testing</h4>
+                      </div>
+                      <div className="app-type-content">
+                        <div className="tech-category">
+                          <strong>Standards:</strong>
+                          <ul>
+                            <li>WCAG 2.0, 2.1, 2.2 (A, AA, AAA)</li>
+                            <li>Section 508</li>
+                            <li>ADA (Americans with Disabilities Act)</li>
+                            <li>EN 301 549 (European standard)</li>
+                          </ul>
+                        </div>
+                        <div className="tech-category">
+                          <strong>Checks:</strong>
+                          <ul>
+                            <li>Color contrast validation</li>
+                            <li>Alt text for images</li>
+                            <li>Keyboard navigation</li>
+                            <li>Screen reader compatibility</li>
+                            <li>ARIA labels validation</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="total-tech-count">
+                    <h4>📊 Total Technologies Supported</h4>
+                    <div className="count-stat">
+                      <div className="count-number">160+</div>
+                      <div className="count-label">Different technologies, platforms, and application types</div>
+                    </div>
+                    <p className="count-note">
+                      TOSCA's extensibility framework allows custom adapters for proprietary or emerging technologies.
+                      If a technology is not natively supported, custom modules can be created using TBox (TOSCA Extensibility Framework).
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           )}

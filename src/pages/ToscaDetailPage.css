@@ -982,3 +982,300 @@
     font-size: 2.25rem;
   }
 }
+
+/* ========================================
+   DETAILED ARCHITECTURE DIAGRAM
+   ======================================== */
+
+.detailed-architecture-section {
+  margin-top: 3rem;
+  padding-top: 3rem;
+  border-top: 3px solid #cbd5e1;
+}
+
+.detailed-arch-container {
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  border-radius: 12px;
+  padding: 2.5rem;
+  margin-top: 1.5rem;
+}
+
+.arch-tier {
+  background: white;
+  border: 2px solid #14b8a6;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(20, 184, 166, 0.15);
+}
+
+.arch-tier.cross-cutting {
+  border-color: #8b5cf6;
+  background: linear-gradient(135deg, #faf5ff 0%, #f5f3ff 100%);
+}
+
+.tier-header {
+  background: linear-gradient(135deg, #14b8a6 0%, #0f766e 100%);
+  color: white;
+  padding: 1rem 1.5rem;
+}
+
+.arch-tier.cross-cutting .tier-header {
+  background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+}
+
+.tier-header h4 {
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.tier-components {
+  padding: 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.25rem;
+}
+
+.detailed-component {
+  background: linear-gradient(135deg, #f0fdfa 0%, #e6fffa 100%);
+  border-left: 4px solid #14b8a6;
+  border-radius: 8px;
+  padding: 1.25rem;
+  transition: all 0.3s ease;
+}
+
+.arch-tier.cross-cutting .detailed-component {
+  background: white;
+  border-left-color: #8b5cf6;
+}
+
+.detailed-component:hover {
+  transform: translateX(5px);
+  box-shadow: 0 4px 12px rgba(20, 184, 166, 0.2);
+}
+
+.component-name {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #0f766e;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #99f6e4;
+}
+
+.arch-tier.cross-cutting .component-name {
+  color: #7c3aed;
+  border-bottom-color: #d8b4fe;
+}
+
+.component-desc {
+  font-size: 0.95rem;
+  color: #334155;
+  line-height: 1.6;
+}
+
+.component-desc strong {
+  color: #0f766e;
+  font-weight: 700;
+  display: block;
+  margin-top: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.component-desc ul {
+  margin: 0.5rem 0 0 1.25rem;
+  padding: 0;
+}
+
+.component-desc li {
+  margin-bottom: 0.25rem;
+  color: #475569;
+}
+
+.tier-connector {
+  text-align: center;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #14b8a6;
+  margin: 1rem 0;
+  padding: 0.5rem;
+  background: linear-gradient(135deg, #e6fffa 0%, #ccfbf1 100%);
+  border-radius: 8px;
+}
+
+/* ========================================
+   SUPPORTED APPLICATIONS SECTION
+   ======================================== */
+
+.supported-apps-section {
+  margin-top: 4rem;
+  padding-top: 3rem;
+  border-top: 3px solid #cbd5e1;
+}
+
+.app-types-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.app-type-card {
+  background: white;
+  border: 2px solid #cbd5e1;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.app-type-card:hover {
+  border-color: #14b8a6;
+  box-shadow: 0 8px 24px rgba(20, 184, 166, 0.2);
+  transform: translateY(-5px);
+}
+
+.app-type-header {
+  background: linear-gradient(135deg, #14b8a6 0%, #0f766e 100%);
+  color: white;
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.app-type-icon {
+  font-size: 2rem;
+}
+
+.app-type-header h4 {
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.app-type-content {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.tech-category {
+  background: #f8fafc;
+  border-left: 4px solid #5eead4;
+  padding: 1rem;
+  border-radius: 6px;
+}
+
+.tech-category strong {
+  color: #0f766e;
+  font-size: 1rem;
+  font-weight: 700;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.tech-category p {
+  color: #334155;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.tech-category ul {
+  margin: 0.5rem 0 0 1.25rem;
+  padding: 0;
+}
+
+.tech-category li {
+  color: #475569;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 0.25rem;
+}
+
+/* Total Technology Count */
+.total-tech-count {
+  background: linear-gradient(135deg, #14b8a6 0%, #0f766e 100%);
+  color: white;
+  border-radius: 12px;
+  padding: 2.5rem;
+  margin-top: 3rem;
+  text-align: center;
+}
+
+.total-tech-count h4 {
+  font-size: 1.75rem;
+  margin: 0 0 1.5rem 0;
+  font-weight: 800;
+}
+
+.count-stat {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  padding: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.count-number {
+  font-size: 4rem;
+  font-weight: 900;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.count-label {
+  font-size: 1.25rem;
+  opacity: 0.95;
+  font-weight: 500;
+}
+
+.count-note {
+  font-size: 1rem;
+  line-height: 1.7;
+  opacity: 0.95;
+  margin: 0;
+  font-style: italic;
+}
+
+/* Responsive Adjustments for New Sections */
+@media (max-width: 1024px) {
+  .tier-components,
+  .app-types-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .tier-components,
+  .app-types-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .detailed-arch-container {
+    padding: 1.5rem;
+  }
+
+  .count-number {
+    font-size: 3rem;
+  }
+
+  .total-tech-count {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .count-number {
+    font-size: 2.5rem;
+  }
+
+  .tier-header h4 {
+    font-size: 1.1rem;
+  }
+
+  .app-type-header h4 {
+    font-size: 1.1rem;
+  }
+}
