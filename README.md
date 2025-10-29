@@ -76,6 +76,35 @@ The production-ready files will be in the `dist/` directory.
 npm run preview
 ```
 
+## 🌐 Deployment
+
+This project supports deployment to both **Vercel** and **Render**:
+
+### Deploy to Vercel
+```bash
+# Using Vercel CLI
+vercel --prod
+```
+
+Or connect your GitHub repository at [vercel.com](https://vercel.com/new) for automatic deployments.
+
+### Deploy to Render
+
+Connect your GitHub repository at [render.com](https://render.com/) - Render will automatically detect the `render.yaml` configuration.
+
+### Deployment Guides
+
+- **Quick Start**: See [DEPLOYMENT.md](./DEPLOYMENT.md) for both platforms
+- **Detailed Render Guide**: See [RENDER_DEPLOYMENT.md](./RENDER_DEPLOYMENT.md)
+
+**Platform Comparison:**
+| Feature | Vercel | Render |
+|---------|--------|--------|
+| Static Hosting | ✅ Yes | ✅ Yes |
+| Serverless Functions | ✅ Yes | ❌ No |
+| Auto-deploy | ✅ Yes | ✅ Yes |
+| Free Tier | ✅ Yes | ✅ Yes |
+
 ## 📁 Project Structure
 
 ```

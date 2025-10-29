@@ -27,6 +27,24 @@
 
 ## Deployment Options
 
+This project supports deployment to both **Vercel** and **Render**. Choose the platform that best fits your needs.
+
+### Platform Comparison
+
+| Feature | Vercel | Render |
+|---------|--------|--------|
+| Static Site Hosting | ✅ Yes | ✅ Yes |
+| Serverless Functions | ✅ Yes | ❌ No (requires separate service) |
+| Auto-deploy from GitHub | ✅ Yes | ✅ Yes |
+| Custom domains | ✅ Yes | ✅ Yes |
+| Free tier | ✅ Yes | ✅ Yes |
+
+**Note**: The `/api/notify-visit.js` serverless function only works on Vercel. The main app works perfectly on both platforms.
+
+---
+
+## Vercel Deployment
+
 ### Option 1: Automatic Deployment via GitHub (Recommended)
 
 If your repository is connected to Vercel:
@@ -59,15 +77,78 @@ vercel
 3. Vercel will auto-detect Vite and configure build settings
 4. Click "Deploy"
 
+---
+
+## Render Deployment
+
+### Option 1: Deploy from GitHub (Recommended)
+
+1. Go to https://render.com/
+
+2. Click "New +" → "Static Site"
+
+3. Connect your GitHub repository: `rishijajee/LLM-Directory`
+
+4. Render will auto-detect the `render.yaml` configuration
+
+5. Click "Create Static Site"
+
+6. Render will automatically build and deploy your site
+
+### Option 2: Deploy with render.yaml Blueprint
+
+1. In your Render dashboard, click "New +" → "Blueprint"
+
+2. Connect your GitHub repository
+
+3. Render will detect the `render.yaml` file and configure everything automatically
+
+4. Review settings and click "Apply"
+
+### Option 3: Manual Configuration
+
+1. Go to https://render.com/ and click "New +" → "Static Site"
+
+2. Connect your repository
+
+3. Configure manually:
+   - **Name**: llm-directory
+   - **Build Command**: `npm install && npm run build`
+   - **Publish Directory**: `dist`
+   - **Auto-Deploy**: Yes
+
+4. Click "Create Static Site"
+
 ## Build Configuration
 
-The project is configured with `vercel.json`:
+### Vercel Configuration (`vercel.json`)
 ```json
 {
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
-  "framework": "vite"
+  "framework": "vite",
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
 }
+```
+
+### Render Configuration (`render.yaml`)
+```yaml
+services:
+  - type: web
+    name: llm-directory
+    env: static
+    buildCommand: npm install && npm run build
+    staticPublishPath: ./dist
+    pullRequestPreviewsEnabled: true
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
 ```
 
 ## Testing Your Deployment
