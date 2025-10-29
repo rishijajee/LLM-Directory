@@ -178,6 +178,36 @@ Monitor your deployment:
 
 ## Troubleshooting
 
+### ⚠️ Error: "Cannot find module '/opt/render/project/src/server.js'"
+
+This error means Render is trying to run your app as a **Node.js Web Service** instead of a **Static Site**.
+
+**Solution: Delete and recreate as Static Site**
+
+1. **Delete the current service:**
+   - Go to your Render Dashboard
+   - Click on the service that's failing
+   - Go to "Settings" (bottom of left sidebar)
+   - Scroll down and click "Delete Service"
+   - Confirm deletion
+
+2. **Create a new Static Site (NOT Web Service):**
+   - Go to https://dashboard.render.com/
+   - Click "New +" → **"Static Site"** (NOT "Web Service")
+   - Connect your GitHub repository
+   - Render should auto-detect the `render.yaml` configuration
+   - Click "Create Static Site"
+
+3. **If auto-detection fails, manually configure:**
+   - **Build Command**: `npm ci && npm run build`
+   - **Publish Directory**: `dist`
+   - Leave **Start Command** empty (static sites don't need this)
+
+**Why this happens:**
+- Selecting "Web Service" tells Render to run a Node.js server
+- Our app is a static React site that doesn't need a server
+- Static sites serve pre-built HTML/CSS/JS files directly
+
 ### Build Fails
 
 If your build fails:

@@ -1,12 +1,12 @@
 # Render Blueprint for LLM Directory
-# This configuration deploys the LLM Directory as a static site on Render
+# IMPORTANT: This deploys as a STATIC SITE, not a web service
 
 services:
   - type: web
     name: llm-directory
     env: static
-    buildCommand: npm install && npm run build
-    staticPublishPath: ./dist
+    buildCommand: npm ci && npm run build
+    staticPublishPath: dist
     pullRequestPreviewsEnabled: true
     headers:
       - path: /*
@@ -16,9 +16,6 @@ services:
       - type: rewrite
         source: /*
         destination: /index.html
-    envVars:
-      - key: NODE_VERSION
-        value: 18
 
 # Note: The /api/notify-visit.js serverless function is Vercel-specific
 # and will not work on Render static sites. To use API functions on Render,
